@@ -3,7 +3,7 @@ from rest_framework import routers
 from . import views
 
 router = routers.DefaultRouter()
-router.register(r'recordatorios', views.RecordatorioViewSet)
+router.register(r'recordatorios', views.RecordatorioViewSet, basename="Recordatorio")
 
 
 urlpatterns = [

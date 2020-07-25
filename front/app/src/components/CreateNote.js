@@ -2,9 +2,30 @@ import React, { useState } from 'react';
 import AddIcon from '../static-files/add.svg';
 import Button from 'react-bootstrap/Button';
 
-const CreateNote = () => {
-    const [editando, setEditando] = useState(false);
+const CreateNote = (props) => {
+    const [notas, setNotas] = props.notas;
 
+    const [editando, setEditando] = useState(false);
+    let [nota, setNota] = useState({ titulo: "", cuerpo: "", vencimiento: null });
+
+
+
+    async function notasBack() {
+        let notasBack = await (await (await fetch("/recordatorios/")).json())
+        setNotas(notasBack);
+        console.log(notasBack);
+    }
+
+    function submitInfo() {
+        fetch("/recordatorios/",
+            {
+                body: JSON.stringify(nota),
+                method: "POST",
+                headers: { "Content-type": "application/json; charset=UTF-8" }
+            })
+            .then(response => response.json())
+            .then(notasBack())
+    }
 
     function icon() {
         if (!editando) {
@@ -21,13 +42,42 @@ const CreateNote = () => {
     function body() {
         if (editando) {
             return (
-                <div className="note-card">
-                    <p>Hola</p>
-                    <Button
-                        className='float-left'
-                        onClick={() => setEditando(true)}>
-                        Crear Nota
+                <div className="note-card float-left">
+                    <form
+                        onSubmit={(e) => {
+                            e.preventDefault();
+                            submitInfo();
+                            setEditando(false);
+                        }}
+                    >
+                        <input type='text' placeholder='título' maxLength="35" required
+                            onChange={(e) => {
+                                const titulo = e.target.value;
+                                nota.titulo = titulo;
+                                setNota(Object.assign({}, nota));
+                            }}
+                        />
+                        <input type='date' placeholder='vencimiento' required
+                            onChange={(e) => {
+                                const vencimiento = e.target.value;
+                                nota.vencimiento = vencimiento;
+                                setNota(Object.assign({}, nota));
+                            }}
+                        />
+                        <input type='text' placeholder='nota' required
+                            onChange={(e) => {
+                                const cuerpo = e.target.value;
+                                nota.cuerpo = cuerpo;
+                                setNota(Object.assign({}, nota));
+                            }}
+                        />
+                        <Button
+                            className='float-left'
+                            type='submit'
+                        >
+                            Crear Nota
                     </Button>
+                    </form>
                 </div>
             )
         }
@@ -37,7 +87,6 @@ const CreateNote = () => {
         <div>
             {icon()}
             {body()}
-
         </div>
     );
 };
