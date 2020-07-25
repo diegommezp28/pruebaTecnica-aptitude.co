@@ -1,0 +1,30 @@
+.addIcon{
+    width: 45px;
+    height: auto;
+    background-color: transparent;
+    border: none;
+}
+
+.button-note{
+    background-color: transparent;
+    border: none;
+    padding: none;
+}
+
+.note-card{
+    width: 15%;
+    height: 80px;
+    box-shadow: 0px 0px 8px 4px rgba(120, 128, 134, 0.534);
+    border-radius: 5px;
+    margin: 20px;
+    overflow-y: auto;
+    padding: 7px;
+}
+
+.float-left{
+    float: left;
+}
+
+.mg-20{
+    margin: 20px;
+}
