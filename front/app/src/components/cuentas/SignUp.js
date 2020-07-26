@@ -1,13 +1,32 @@
 import React, { useState } from 'react';
 import { Col, Row, Card, FormGroup, Button } from 'react-bootstrap';
-import { Link } from 'react-router-dom';
+import { Link, Redirect, useHistory } from 'react-router-dom';
 
-const SignUp = () => {
+const SignUp = (props) => {
     let [infoUser, setInfoUser] = useState({ username: "", email: "", password: "", passwordConf: "" });
+    const [state, setState] = props.state;
+    let history = useHistory();
 
     function onSubmit(e) {
         e.preventDefault();
         console.log('submit');
+        fetch("/api/auth/register",
+            {
+                body: JSON.stringify(infoUser),
+                method: "POST",
+                headers: {
+                    "Content-type": "application/json; charset=UTF-8",
+                }
+            })
+            .then(response => response.json())
+            .then(response => {
+                localStorage.setItem("token", response.token);
+                state.token = localStorage.getItem("token");
+                state.user = response.user;
+                state.isAuth = true;
+                setState(Object.assign({}, state));
+                history.push("/");
+            })
 
     }
 
@@ -19,11 +38,11 @@ const SignUp = () => {
     return (
         <Row>
             <Col md={3} xs={2}></Col>
-            <Col md={6} xs="auto">
-                <Card className="mt-5">
-                    <Card.Body>
+            <Col md={6} xs={8}>
+                <Card className="mt-5 pt-3 mb-2">
+                    <Card.Title>
                         <h3 className="text-center center">Registro</h3>
-                    </Card.Body>
+                    </Card.Title>
                 </Card>
                 <form onSubmit={onSubmit}>
                     <FormGroup>
@@ -33,6 +52,7 @@ const SignUp = () => {
                             className="form-control"
                             name="username"
                             onChange={onChange}
+                            required
                         ></input>
                     </FormGroup>
                     <FormGroup>
@@ -42,6 +62,7 @@ const SignUp = () => {
                             className="form-control"
                             name="email"
                             onChange={onChange}
+                            required
                         ></input>
                     </FormGroup>
                     <FormGroup>
@@ -51,6 +72,7 @@ const SignUp = () => {
                             className="form-control"
                             name="password"
                             onChange={onChange}
+                            required
                         ></input>
                     </FormGroup>
                     <FormGroup>
@@ -60,6 +82,7 @@ const SignUp = () => {
                             className="form-control"
                             name="passwordConf"
                             onChange={onChange}
+                            required
                         ></input>
                     </FormGroup>
                     <FormGroup>
@@ -68,7 +91,7 @@ const SignUp = () => {
                     </Button>
                     </FormGroup>
                     <p>¿Ya tienes cuenta?
-                    <Link to="/login/">LogIn</Link>
+                    <Link to="/login/"> LogIn</Link>
                     </p>
                 </form>
 

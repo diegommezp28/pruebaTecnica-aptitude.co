@@ -4,6 +4,10 @@ import Button from 'react-bootstrap/Button';
 
 const CreateNote = (props) => {
     const [notas, setNotas] = props.notas;
+    const [state, setState] = props.state;
+    // console.log('====================================');
+    // console.log(state);
+    // console.log('====================================');
 
     const [editando, setEditando] = useState(false);
     let [nota, setNota] = useState({ titulo: "", cuerpo: "", vencimiento: null });
@@ -11,8 +15,14 @@ const CreateNote = (props) => {
 
 
     async function notasBack() {
-        let notasBack = await (await (await fetch("/recordatorios/")).json())
+        let notasBack = await (await (await fetch("/recordatorios/", {
+            headers: {
+                "Content-type": "application/json; charset=UTF-8",
+                "Authorization": "Token " + state.token
+            }
+        })).json())
         setNotas(notasBack);
+        console.log('notasBack');
         console.log(notasBack);
     }
 
@@ -21,10 +31,15 @@ const CreateNote = (props) => {
             {
                 body: JSON.stringify(nota),
                 method: "POST",
-                headers: { "Content-type": "application/json; charset=UTF-8" }
+                headers: {
+                    "Content-type": "application/json; charset=UTF-8",
+                    "Authorization": "Token " + state.token
+                }
             })
             .then(response => response.json())
-            .then(notasBack())
+            .then(response => {
+                notasBack()
+            })
     }
 
     function icon() {
