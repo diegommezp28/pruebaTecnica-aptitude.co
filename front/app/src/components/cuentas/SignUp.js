@@ -57,13 +57,6 @@ const SignUp = (props) => {
                     </FormGroup>
                     <FormGroup>
                         <label>Email</label>
-                        {/* <input
-                            type="text"
-                            className="form-control"
-                            name="email"
-                            onChange={onChange}
-                            required
-                        ></input> */}
                         <Form.Control
                             type="email"
                             placeholder="Enter email"

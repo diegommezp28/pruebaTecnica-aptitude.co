@@ -5,9 +5,6 @@ import { Button, Form } from 'react-bootstrap/';
 const CreateNote = (props) => {
     const [notas, setNotas] = props.notas;
     const [state, setState] = props.state;
-    // console.log('====================================');
-    // console.log(state);
-    // console.log('====================================');
 
     const [editando, setEditando] = useState(false);
     let [nota, setNota] = useState({ titulo: "", cuerpo: "", vencimiento: null });
@@ -88,14 +85,6 @@ const CreateNote = (props) => {
                             />
 
                         </Form.Group>
-                        {/* <label>Vencimiento</label>
-                        <input type='date' placeholder='vencimiento' required
-                            onChange={(e) => {
-                                const vencimiento = e.target.value;
-                                nota.vencimiento = vencimiento;
-                                setNota(Object.assign({}, nota));
-                            }}
-                        /> */}
                         <Form.Group>
                             <Form.Control as="textarea" rows="3" placeholder='Recordatorio' required
                                 onChange={(e) => {
