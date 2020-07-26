@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Col, Row, Card, FormGroup, Button } from 'react-bootstrap';
+import { Col, Row, Card, Form, FormGroup, Button } from 'react-bootstrap';
 import { Link, useHistory } from 'react-router-dom';
 
 const SignUp = (props) => {
@@ -57,13 +57,20 @@ const SignUp = (props) => {
                     </FormGroup>
                     <FormGroup>
                         <label>Email</label>
-                        <input
+                        {/* <input
                             type="text"
                             className="form-control"
                             name="email"
                             onChange={onChange}
                             required
-                        ></input>
+                        ></input> */}
+                        <Form.Control
+                            type="email"
+                            placeholder="Enter email"
+                            className="form-control"
+                            name="email"
+                            onChange={onChange}
+                            required />
                     </FormGroup>
                     <FormGroup>
                         <label>Contraseña</label>

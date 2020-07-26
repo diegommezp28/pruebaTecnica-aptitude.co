@@ -28,13 +28,20 @@ input {
   font-weight: 630 !important;
 }
 
-hr{
+hr {
   border-color: rgb(65, 66, 73);
 }
 
 .App {
   background-color: rgb(87, 85, 94);
-  overflow: hidden;
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+
+.header{
+  width: calc(100% - 97px) !important;
+  height: 85px;
+  float: left;
 }
 
 .addIcon {
@@ -42,6 +49,14 @@ hr{
   height: auto;
   background-color: transparent;
   border: none;
+}
+
+.addIcon-wrapper {
+  width: 280px;
+  height: 150px;
+  border-style: dashed;
+  border-color: rgb(128, 128, 128);
+  border-width: 2px;
 }
 
 .button-note {
@@ -52,10 +67,13 @@ hr{
 
 .note-card {
   width: 350px;
-  height: 200px;
-  box-shadow: 0px 0px 6px 4px rgba(204, 201, 201, 0.534);
-  border-radius: 5px;
+  min-height: 200px;
+  max-height: 400px;
+  height: auto;
+  background-color: rgb(128, 128, 128);
+  box-shadow: 0px 0px 12px 5px rgb(71, 71, 73);
   margin: 20px 10px 8px 10px;
+  border-radius: 5px;
   overflow-y: auto;
   padding: 7px;
 }
@@ -72,9 +90,16 @@ hr{
   box-shadow: 0px 0px 12px 5px rgb(71, 71, 73);
 }
 
-.note-detail{
+.note-detail {
   background-color: rgb(128, 128, 128);
   color: white;
   width: 350px;
   height: auto;
+}
+
+@media (max-width: 425px) {
+  .note-detail {
+    float: center !important;
+    clear: both;
+  }
 }

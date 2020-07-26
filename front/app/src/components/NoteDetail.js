@@ -5,9 +5,9 @@ const NoteDetail = (props) => {
     const nota = props.nota;
     return (
         <>
-            <Card className='float-left m-2 box-shadow mt-4 note-detail'>
+            <Card className='float-left m-2 box-shadow mt-3 note-detail'>
                 <Card.Body>
-                    <Card.Title>
+                    <Card.Title className="text-capitalize">
                         {nota.titulo}
                     </Card.Title>
                     <hr></hr>

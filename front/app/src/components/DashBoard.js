@@ -49,6 +49,7 @@ const DashBoard = (props) => {
 
     return (
         <div>
+            <div className="header">{" "}</div>
             <button onClick={logOut} className="float-right mg-20 button-note">
                 <img className='addIcon' src={LogoutIcon} alt=""></img>
             </button>
