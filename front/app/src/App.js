@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import { HashRouter as Router, Route, Switch, Redirect } from 'react-router-dom';
-import logo from './logo.svg';
 import './App.css';
 import "bootstrap/dist/css/bootstrap.min.css";
 import DashBoard from './components/DashBoard';

@@ -2,8 +2,8 @@ import React, { useState, useEffect } from 'react';
 import CreateNote from './CreateNote';
 import NoteDetail from './NoteDetail';
 import {useHistory } from 'react-router-dom';
+import LogoutIcon from '../static-files/signout.svg';
 import './styles.css';
-import Row from 'react-bootstrap/Row';
 
 const DashBoard = (props) => {
 
@@ -49,8 +49,8 @@ const DashBoard = (props) => {
 
     return (
         <div>
-            <button onClick={logOut} className="float-right mr-2 mt-2">
-                LogOut
+            <button onClick={logOut} className="float-right mg-20 button-note">
+                <img className='addIcon' src={LogoutIcon} alt=""></img>
             </button>
             <CreateNote notas={[notas, setNotas]}
                 state={[state, setState]}

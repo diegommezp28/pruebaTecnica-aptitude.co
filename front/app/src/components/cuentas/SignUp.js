@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Col, Row, Card, FormGroup, Button } from 'react-bootstrap';
-import { Link, Redirect, useHistory } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 
 const SignUp = (props) => {
     let [infoUser, setInfoUser] = useState({ username: "", email: "", password: "", passwordConf: "" });
@@ -68,7 +68,7 @@ const SignUp = (props) => {
                     <FormGroup>
                         <label>Contraseña</label>
                         <input
-                            type="text"
+                            type="password"
                             className="form-control"
                             name="password"
                             onChange={onChange}
@@ -78,7 +78,7 @@ const SignUp = (props) => {
                     <FormGroup>
                         <label>Confirmar Contraseña</label>
                         <input
-                            type="text"
+                            type="password"
                             className="form-control"
                             name="passwordConf"
                             onChange={onChange}

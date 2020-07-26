@@ -59,7 +59,7 @@ const Login = (props) => {
                     <FormGroup>
                         <label>Contraseña</label>
                         <input
-                            type="text"
+                            type="password"
                             className="form-control"
                             name="password"
                             onChange={onChange}
